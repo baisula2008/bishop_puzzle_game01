@@ -6,11 +6,11 @@
     <artifactId>homework-template-project</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <description><!-- TODO: a brief description of your project --></description>
+    <description><!-- TODO: puzzle game  --></description>
     <developers>
         <developer>
-            <name><!-- TODO: your full name --></name>
-            <email><!-- TODO: your email address --></email>
+            <name><!-- TODO: BAISULA BAISULA --></name>
+            <email><!-- TODO: 3575205331a@gmail.com --></email>
             <organization>Faculty of Informatics, University of Debrecen</organization>
             <organizationUrl>https://inf.unideb.hu/</organizationUrl>
         </developer>
