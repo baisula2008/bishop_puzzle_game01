@@ -17,9 +17,6 @@ public class LoginController {
     private TextField player1NameField;
 
     @FXML
-    private TextField player2NameField;
-
-    @FXML
     private Button startGameButton;
 
     private Stage primaryStage;

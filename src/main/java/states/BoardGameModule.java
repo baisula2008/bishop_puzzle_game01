@@ -6,9 +6,7 @@ import models.Position;
 import models.Square;
 import puzzle.TwoPhaseMoveState;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Auther: willson2008
@@ -23,10 +21,10 @@ public class BoardGameModule implements TwoPhaseMoveState<TwoPhaseMoveState.TwoP
     private ReadOnlyObjectWrapper<Square>[][] board;
 
     public BoardGameModule(){
-        board = new ReadOnlyObjectWrapper[BOARD_SIZE][4];
+        this.board = new ReadOnlyObjectWrapper[BOARD_SIZE][4];
         for (var i = 0; i < BOARD_SIZE; i++) {
             for (var j = 0; j < 4; j++) {
-                board[i][j] = new ReadOnlyObjectWrapper<>(
+                this.board[i][j] = new ReadOnlyObjectWrapper<>(
                         switch (i){
                             case 0 -> (j % 2 != 0) ? Square.BLACK : Square.NONE;
                             case BOARD_SIZE -1 ->(j % 2 != 0) ? Square.WHITE : Square.NONE;
@@ -36,8 +34,12 @@ public class BoardGameModule implements TwoPhaseMoveState<TwoPhaseMoveState.TwoP
             }
         }
     }
+
+    public BoardGameModule(ReadOnlyObjectWrapper<Square>[][] inputBoard){
+        this.board = inputBoard;
+    }
     public ReadOnlyObjectProperty<Square> squareProperty(int i , int j){
-        return board[i][j].getReadOnlyProperty();
+        return this.board[i][j].getReadOnlyProperty();
     }
     public Square getSquare(Position p){
         return this.board[p.row()][p.col()].get();
@@ -62,8 +64,8 @@ public class BoardGameModule implements TwoPhaseMoveState<TwoPhaseMoveState.TwoP
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < 4; j++) {
                 switch (i) {
-                    case 0, BOARD_SIZE - 1 -> board[i][j].set((j % 2 != 0) ? Square.BLACK : Square.NONE);
-                    default -> board[i][j].set(Square.NONE);
+                    case 0, BOARD_SIZE - 1 -> this.board[i][j].set((j % 2 != 0) ? Square.BLACK : Square.NONE);
+                    default -> this.board[i][j].set(Square.NONE);
                 }
             }
         }
@@ -71,12 +73,21 @@ public class BoardGameModule implements TwoPhaseMoveState<TwoPhaseMoveState.TwoP
 
     @Override
     public boolean isLegalToMoveFrom(TwoPhaseMove move) {
-        return !isEmpty((Position) move.from());
+        Set allLegalMoves = getLegalMoves();
+        boolean isLegalToMove = false;
+        for(Object validMove : allLegalMoves) {
+            TwoPhaseMove tempMove = (TwoPhaseMove) validMove;
+            if (tempMove.from() == move.from()) {
+                isLegalToMove = true;
+                break;
+            }
+        }
+        return isLegalToMove;
     }
 
     @Override
     public boolean isSolved() {
-        return board[0][1].get() == Square.WHITE && board[0][3].get() == Square.WHITE && board[BOARD_SIZE - 1][1].get() == Square.BLACK && board[BOARD_SIZE - 1][3].get() == Square.BLACK;
+        return this.board[0][1].get() == Square.WHITE && this.board[0][3].get() == Square.WHITE && this.board[BOARD_SIZE - 1][1].get() == Square.BLACK && this.board[BOARD_SIZE - 1][3].get() == Square.BLACK;
     }
 
     @Override
@@ -92,22 +103,20 @@ public class BoardGameModule implements TwoPhaseMoveState<TwoPhaseMoveState.TwoP
                 }
             }
         }
-        return isOnBoard(from) && isOnBoard(to) && !isEmpty(from) && isEmpty(to) && isDiagonalMove(from, to);
+        return isOnBoard(from) && isOnBoard(to) && isEmpty(to) && isDiagonalMove(from, to);
     }
 
     @Override
     public void makeMove(TwoPhaseMove move) {
-        System.out.println("current move:" + move.toString());
         Position from = (Position) move.from();
         Position to = (Position) move.to();
         setSquare(to, getSquare(from));
         setSquare(from,Square.NONE);
-        System.out.println("made move");
     }
 
     @Override
     public Set getLegalMoves() {
-        Set tempSet = new HashSet<>();
+        Set tempSet = new HashSet<TwoPhaseMove>();
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < 4; j++) {
                 Position temp1 = new Position(i, j);
@@ -117,7 +126,6 @@ public class BoardGameModule implements TwoPhaseMoveState<TwoPhaseMoveState.TwoP
                             Position temp2 = new Position(x, y);
                             TwoPhaseMove twoPhaseMove = new TwoPhaseMove(temp1, temp2);
                             if (isLegalMove(twoPhaseMove)) {
-                                System.out.println(twoPhaseMove.toString());
                                 tempSet.add(twoPhaseMove);
                             }
                         }
@@ -130,33 +138,73 @@ public class BoardGameModule implements TwoPhaseMoveState<TwoPhaseMoveState.TwoP
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BoardGameModule that = (BoardGameModule) o;
-        return Arrays.deepEquals(board, that.board);
+        BoardGameModule boardGameModule = (BoardGameModule) o;
+        boolean result = true;
+        for (var i = 0; i < BOARD_SIZE; i++) {
+            for (var j = 0; j < 4; j++) {
+                if (boardGameModule.board[i][j].get() != this.board[i][j].get())    result = false;
+            }
+        }
+        return result;
     }
 
     @Override
     public int hashCode() {
-        return Arrays.deepHashCode(board);
+        List positions = getSetOfSquares();
+        return Objects.hash(positions.get(0), positions.get(1),
+                positions.get(2), positions.get(3));
     }
 
     @Override
     public String toString() {
-        return "BoardGameModule{" +
-                "board=" + Arrays.toString(board) +
-                '}';
+        StringBuilder boardInText = new StringBuilder("\n");
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < 4; j++) {
+                Position pos = new Position(i, j);
+                if (board[pos.row()][pos.col()].get() == Square.WHITE){
+                    boardInText.append("W");
+                } else if (board[pos.row()][pos.col()].get() == Square.BLACK) {
+                    boardInText.append("B");
+                } else {
+                    boardInText.append("0");
+                }
+                boardInText.append(" ");
+            }
+            boardInText.append("\n");
+        }
+        return boardInText.toString();
     }
 
     @Override
     public BoardGameModule clone() {
-        BoardGameModule copy = null;
-        try {
-            copy = (BoardGameModule) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
+        var tempBoard = new ReadOnlyObjectWrapper[BOARD_SIZE][4];
+        for (var i = 0; i < BOARD_SIZE; i++) {
+            for (var j = 0; j < 4; j++) {
+                tempBoard[i][j] = new ReadOnlyObjectWrapper<>(Square.NONE);
+            }
         }
-        copy.board = board.clone();
-        return copy;
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < 4; j++) {
+                Position pos = new Position(i, j);
+                switch (this.board[pos.row()][pos.col()].get()) {
+                    case BLACK -> tempBoard[i][j] = new ReadOnlyObjectWrapper<>(Square.BLACK);
+                    case WHITE -> tempBoard[i][j] = new ReadOnlyObjectWrapper<>(Square.WHITE);
+                }
+            }
+        }
+        var temp = new BoardGameModule(tempBoard);
+        return temp;
+    }
+
+    private List<Position> getSetOfSquares() {
+        List<Position> temp = new ArrayList<Position>();
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < 4; j++) {
+                Position pos = new Position(i, j);
+                if (!isEmpty(pos))
+                    temp.add(pos);
+            }
+        }
+        return temp;
     }
 }
