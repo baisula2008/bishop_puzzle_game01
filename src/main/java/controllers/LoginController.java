@@ -43,10 +43,10 @@ public class LoginController {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chessboard.fxml"));
             Pane gamePane = loader.load();
 
-//            BoardGameController gameController = loader.getController();
+            BoardGameController gameController = loader.getController();
 //            gameController.setPlayerNames(player1, player2);
 
             Scene gameScene = new Scene(gamePane);
