@@ -8,17 +8,11 @@ import puzzle.TwoPhaseMoveState;
 
 import java.util.*;
 
-/**
- * @Auther: willson2008
- * @Date: 15/03/2024 - 03 - 15 - 19:06
- * @Description: org.example.demo2.org.example.demo2
- * @Version: 1.0
- */
 public class BoardGameModule implements TwoPhaseMoveState<TwoPhaseMoveState.TwoPhaseMove>{
 
-    public static final int BOARD_SIZE = 5;
+    private static final int BOARD_SIZE = 5;
 
-    private ReadOnlyObjectWrapper<Square>[][] board;
+    private final ReadOnlyObjectWrapper<Square>[][] board;
 
     public BoardGameModule(){
         this.board = new ReadOnlyObjectWrapper[BOARD_SIZE][4];
@@ -41,7 +35,7 @@ public class BoardGameModule implements TwoPhaseMoveState<TwoPhaseMoveState.TwoP
     public ReadOnlyObjectProperty<Square> squareProperty(int i , int j){
         return this.board[i][j].getReadOnlyProperty();
     }
-    public Square getSquare(Position p){
+    private Square getSquare(Position p){
         return this.board[p.row()][p.col()].get();
     }
     private void setSquare(Position p, Square square){

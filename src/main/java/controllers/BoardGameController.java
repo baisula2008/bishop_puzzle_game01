@@ -19,14 +19,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-/**
- * The type Board game controller.
- *
- * @Auther: willson2008
- * @Date: 15 /03/2024 - 03 - 15 - 15:48
- * @Description: org.example.demo2
- * @Version: 1.0
- */
 public class BoardGameController {
 
 
