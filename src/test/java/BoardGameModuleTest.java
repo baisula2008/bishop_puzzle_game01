@@ -1,4 +1,4 @@
-package states;
+
 
 import models.Position;
 import models.Square;
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
+import states.BoardGameModule;
 
 
 public class BoardGameModuleTest {
