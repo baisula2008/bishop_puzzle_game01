@@ -15,20 +15,7 @@ public class BoardGameMoveSelector {
         READY_TO_MOVE
     }
 
-    public Phase getPhase() {
-        return phase.get();
-    }
-
     private BoardGameModule module;
-
-    private static BoardGameMoveSelector instance;
-
-    public static BoardGameMoveSelector getInstance(BoardGameModule module){
-        if (instance == null) {
-            instance = new BoardGameMoveSelector(module);
-        }
-        return instance;
-    }
 
     private ReadOnlyObjectWrapper<Phase> phase = new ReadOnlyObjectWrapper<>(Phase.SELECT_FROM);
     private boolean invalidSelection = false;
@@ -75,12 +62,7 @@ public class BoardGameMoveSelector {
         }
         return from;
     }
-    public Position getTo(){
-        if (phase.get()!=Phase.READY_TO_MOVE){
-            throw new IllegalStateException();
-        }
-        return to;
-    }
+
     public boolean isInvalidSelection(){
         return invalidSelection;
     }
