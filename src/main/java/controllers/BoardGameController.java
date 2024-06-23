@@ -22,13 +22,6 @@ import java.util.logging.Logger;
 public class BoardGameController {
 
 
-    @FXML
-    private Button logout;
-
-    @FXML
-    private Button reset;
-
-
 
     @FXML
     private GridPane board;
@@ -127,9 +120,7 @@ public class BoardGameController {
         throw new AssertionError();
     }
 
-    private void setReset(BoardGameMoveSelector selector){
-        selector.reset();
-    }
+
 
 
 }

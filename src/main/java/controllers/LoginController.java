@@ -34,7 +34,7 @@ public class LoginController {
         String player1 = player1NameField.getText();
 
         if (player1.isEmpty()) {
-            // Display an error message
+
             Logger.error("Player's name not provided!");
             return;
         }
@@ -44,7 +44,7 @@ public class LoginController {
             Pane gamePane = loader.load();
 
             BoardGameController gameController = loader.getController();
-//            gameController.setPlayerNames(player1, player2);
+
 
             Scene gameScene = new Scene(gamePane);
             primaryStage.setScene(gameScene);

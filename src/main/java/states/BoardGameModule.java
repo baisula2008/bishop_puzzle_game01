@@ -53,17 +53,7 @@ public class BoardGameModule implements TwoPhaseMoveState<TwoPhaseMoveState.TwoP
         return dx == dy && dx != 0;
     }
 
-    public void reset() {
-        // 重置棋盘上的所有棋子状态
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            for (int j = 0; j < 4; j++) {
-                switch (i) {
-                    case 0, BOARD_SIZE - 1 -> this.board[i][j].set((j % 2 != 0) ? Square.BLACK : Square.NONE);
-                    default -> this.board[i][j].set(Square.NONE);
-                }
-            }
-        }
-    }
+
 
     @Override
     public boolean isLegalToMoveFrom(TwoPhaseMove move) {
