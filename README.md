@@ -1,20 +1,14 @@
 Bishops Swapping
-
-Project Overview:This project demonstrates the efficient swapping of the positions of two black bishops and two white bishops on a 5x4 chessboard using Java. The solution showcases the application of chess movement rules, strategic decision-making, and optimized pathfinding techniques in a restricted environment.
+Overview
+This project implements a simulation to swap the positions of two black bishops and two white bishops on a 5x4 chessboard, adhering to chess movement rules. The project optimizes for clarity, efficiency, and adherence to constraints, offering an interactive and algorithmically robust solution.
 
 Game Description
-
 Board Configuration
-
-Dimensions: 5 rows x 4 columns.
-
-Initial State:
-
-Top row: 2 Black bishops (B).
-
-Bottom row: 2 White bishops (W).
-
-Goal State: Swap the positions of black and white bishops to achieve:
+Board Dimensions: 5 rows × 4 columns.
+Initial Setup:
+Top Row: 2 Black Bishops (B).
+Bottom Row: 2 White Bishops (W).
+Goal: Swap the positions of black and white bishops to achieve:
 
 +---+---+---+---+
 |   | W |   | W |
@@ -27,66 +21,48 @@ Goal State: Swap the positions of black and white bishops to achieve:
 +---+---+---+---+
 |   | B |   | B |
 +---+---+---+---+
-
 Rules
-
-Movement: Bishops move diagonally, following standard chess rules.
-
-Attack Restriction: Bishops cannot move to squares under attack by opposing pieces.
-
-Turn Flexibility: Moves are not turn-based; any piece can be moved at any time.
-
-Gameplay Mechanics
-
-The game starts with bishops in the initial positions.
-
-Players or the program moves the bishops step by step following the rules to reach the goal state.
-
-The program ensures that no invalid moves are made and calculates the optimal sequence of moves.
-
-Implementation Details
+Bishop Movement: Bishops move diagonally, following standard chess rules.
+No Conflicts: A bishop cannot move to a position under attack by the opposing bishop.
+Flexibility: The sequence of moves is not turn-based; any bishop can be moved first.
+Objective
+Swap black and white bishops while respecting movement constraints, ensuring no invalid moves, and finding the optimal solution.
 
 Features
+Interactive Simulation: A graphical interface displays each bishop's movement step-by-step.
+Rule Enforcement: Chess constraints are rigorously followed.
+Optimal Algorithm: Uses Breadth-First Search (BFS) to minimize the number of moves.
+Testing & Debugging: Ensures code quality using JUnit tests for corner cases.
+Two-Phase Logic: Plans efficient, rule-compliant steps for swapping bishops.
+Tools & Technologies
+Programming
+Language: Java
+Frameworks/Libraries
+JavaFX: For interactive visualization of the game board and movements.
+TinyLog: Lightweight logging is used to monitor program execution.
+Lombok: Reduces boilerplate code with annotations (@Getter, @Setter, @Data).
+JUnit: Ensures robust functionality through unit tests.
+Maven: Dependency integration and project management.
+Architecture & Design
+MVC Design Pattern: Ensures clean, maintainable, and scalable code organization.
+Algorithms & Data Structures
+Breadth-First Search (BFS): Computes the shortest path to swap positions while avoiding invalid states.
+2D Array: Represents the chessboard layout and tracks bishop positions.
+Coordinate System: Encodes positions and moves to facilitate calculations.
+Usage Instructions
 
-Two-Phase Movement: The project identifies the most efficient sequence of moves to swap positions while adhering to the rules.
+Clone the Repository:
+git clone <repository-url>
+Build the Project:
+mvn compile
+Run the Program:
+mvn javafx:run
+Execute Unit Tests:
+mvn test
+Interactive Experience: View the movement visualization in the graphical interface.
+Example Gameplay
+Move 1: Black bishop from (0,1) to (1,2).
 
-Rule Enforcement: Ensures all moves follow chess mechanics and avoid invalid states.
-
-Optimized Solution: Utilizes the Breadth-First Search (BFS) algorithm to find the shortest path to the goal state.
-
-Interactive Simulation: Clear step-by-step representation of bishop movements for visualization.
-
-Test Coverage: Implements JUnit tests to ensure the correctness of the solution.
-
-Technologies and Libraries Used
-
-Programming Language: Java
-
-Libraries/Frameworks:
-
-TinyLog: Used for lightweight logging throughout the application.
-
-Lombok: Reduces boilerplate code with annotations like @Getter, @Setter, and @Data.
-
-JavaFX: Provides a graphical user interface for visualizing the board and movements.
-
-JUnit: Facilitates unit testing to ensure the program works as expected.
-
-Maven (mvn): Used for project management and dependency integration.
-
-Design Pattern: MVC (Model-View-Controller) ensures a clean and maintainable code structure.
-
-Algorithms and Data Structures
-
-Breadth-First Search (BFS): Used to find the shortest path for bishop movements while avoiding conflicts.
-
-2D Array: Represents the game board and tracks the positions of all bishops.
-
-Coordinate Pairs: Represents the moves in a structured form.
-
-Example Gameplay Sequence
-
-Move 1: Black bishop from (0,1) to (1,2)
 
 +---+---+---+---+
 |   |   |   | B |
@@ -99,8 +75,8 @@ Move 1: Black bishop from (0,1) to (1,2)
 +---+---+---+---+
 |   | W |   | W |
 +---+---+---+---+
+Move 2: White bishop from (4,3) to (1,0).
 
-Move 2: White bishop from (4,3) to (1,0)
 
 +---+---+---+---+
 |   |   |   | B |
@@ -113,8 +89,8 @@ Move 2: White bishop from (4,3) to (1,0)
 +---+---+---+---+
 |   | W |   |   |
 +---+---+---+---+
+Move 3: White bishop from (4,1) to (3,2).
 
-Move 3: White bishop from (4,1) to (3,2)
 
 +---+---+---+---+
 |   |   |   | B |
@@ -127,5 +103,9 @@ Move 3: White bishop from (4,1) to (3,2)
 +---+---+---+---+
 |   |   |   |   |
 +---+---+---+---+
+(Repeat steps until the goal state is achieved.)
 
-... (and so on until the goal state is achieved).
+Applications
+Chess Simulations: For educational and game-related purposes.
+Algorithm Demonstrations: BFS application in problem-solving.
+Path Optimization: Strategy development in constrained setups.
