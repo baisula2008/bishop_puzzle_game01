@@ -1,4 +1,7 @@
+```
 Bishops Swapping
+```
+
 Overview
 This project implements a simulation to swap the positions of two black bishops and two white bishops on a 5x4 chessboard, adhering to chess movement rules. The project optimizes for clarity, efficiency, and adherence to constraints, offering an interactive and algorithmically robust solution.
 
