@@ -66,7 +66,7 @@ Interactive Experience: View the movement visualization in the graphical interfa
 Example Gameplay
 Move 1: Black bishop from (0,1) to (1,2).
 
-
+```
 +---+---+---+---+
 |   |   |   | B |
 +---+---+---+---+
@@ -78,9 +78,10 @@ Move 1: Black bishop from (0,1) to (1,2).
 +---+---+---+---+
 |   | W |   | W |
 +---+---+---+---+
+```
 Move 2: White bishop from (4,3) to (1,0).
 
-
+```
 +---+---+---+---+
 |   |   |   | B |
 +---+---+---+---+
@@ -92,9 +93,10 @@ Move 2: White bishop from (4,3) to (1,0).
 +---+---+---+---+
 |   | W |   |   |
 +---+---+---+---+
+```
 Move 3: White bishop from (4,1) to (3,2).
 
-
+```
 +---+---+---+---+
 |   |   |   | B |
 +---+---+---+---+
@@ -106,6 +108,7 @@ Move 3: White bishop from (4,1) to (3,2).
 +---+---+---+---+
 |   |   |   |   |
 +---+---+---+---+
+```
 (Repeat steps until the goal state is achieved.)
 
 Applications
