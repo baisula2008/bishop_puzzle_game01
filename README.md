@@ -123,6 +123,6 @@ Example Gameplay
 (Repeat steps until the goal state is achieved.)
 
 #### Applications Chess Simulations: ####
-- For educational and game-related purposes.
+
 - Algorithm Demonstrations: BFS application in problem-solving.
 - Path Optimization: Strategy development in constrained setups.
