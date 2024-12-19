@@ -1,7 +1,8 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/f0r53tPY)
 # Bishops Swapping
 
-Consider a game board consisting of 5 rows and 4 columns. The game is played with 2 black bishop and 2 white bishop chess pieces. Initially, the 2 black bishops are placed in the top row, while the 2 white bishops are placed in the bottom row as shown below (B's represent black bishops, and W's represent white bishops, respectively):
+Consider a game board consisting of 5 rows and 4 columns. The game is played with 2 black bishop and 2 white bishop chess pieces. Initially, the 2 black bishops are placed in the top row, 
+while the 2 white bishops are placed in the bottom row as shown below (B's represent black bishops, and W's represent white bishops, respectively):
 
 +---+---+---+---+
 |   | B |   | B |
@@ -27,7 +28,8 @@ The goal of the game is to swap the pieces on the board, i.e., to obtain the fol
 +---+---+---+---+
 |   | B |   | B |
 +---+---+---+---+
-The pieces move according to the rules of the chess. A piece is not allowed to be moved to a square that is under attack by any piece of the opposite color. Black pieces and white pieces are not required to move in turn. Any of the pieces can be moved in the first move.
+The pieces move according to the rules of the chess. A piece is not allowed to be moved to a square that is under attack by any piece of the opposite color. 
+Black pieces and white pieces are not required to move in turn. Any of the pieces can be moved in the first move.
 
 The optimal solution:
 0 B 0 B
