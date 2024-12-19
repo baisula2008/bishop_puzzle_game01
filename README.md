@@ -10,6 +10,7 @@ Top Row: 2 Black Bishops (B).
 Bottom Row: 2 White Bishops (W).
 Goal: Swap the positions of black and white bishops to achieve:
 
+```
 +---+---+---+---+
 |   | W |   | W |
 +---+---+---+---+
@@ -21,6 +22,8 @@ Goal: Swap the positions of black and white bishops to achieve:
 +---+---+---+---+
 |   | B |   | B |
 +---+---+---+---+
+```
+
 Rules
 Bishop Movement: Bishops move diagonally, following standard chess rules.
 No Conflicts: A bishop cannot move to a position under attack by the opposing bishop.
