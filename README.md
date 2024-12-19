@@ -1,21 +1,19 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/f0r53tPY)
-# Bishops Swapping
+Bishops Swapping
 
-Consider a game board consisting of 5 rows and 4 columns. The game is played with 2 black bishop and 2 white bishop chess pieces. Initially, the 2 black bishops are placed in the top row, 
-while the 2 white bishops are placed in the bottom row as shown below (B's represent black bishops, and W's represent white bishops, respectively):
+Project Overview:
+This project involves creating a simulation to swap the positions of two black bishop and two white bishop chess pieces on a 5x4 game board. The program demonstrates the steps and rules required to achieve the goal state efficiently, considering chess movement rules and restrictions.
 
-+---+---+---+---+
-|   | B |   | B |
-+---+---+---+---+
-|   |   |   |   |
-+---+---+---+---+
-|   |   |   |   |
-+---+---+---+---+
-|   |   |   |   |
-+---+---+---+---+
-|   | W |   | W |
-+---+---+---+---+
-The goal of the game is to swap the pieces on the board, i.e., to obtain the following configuration:
+Game Description
+
+Board Configuration: The game board has 5 rows and 4 columns.
+
+Initial State:
+
+2 Black bishops (B) placed on the top row.
+
+2 White bishops (W) placed on the bottom row.
+
+Goal State: Swap the positions of black and white bishops to achieve:
 
 +---+---+---+---+
 |   | W |   | W |
@@ -28,138 +26,59 @@ The goal of the game is to swap the pieces on the board, i.e., to obtain the fol
 +---+---+---+---+
 |   | B |   | B |
 +---+---+---+---+
-The pieces move according to the rules of the chess. A piece is not allowed to be moved to a square that is under attack by any piece of the opposite color. 
-Black pieces and white pieces are not required to move in turn. Any of the pieces can be moved in the first move.
 
-The optimal solution:
-0 B 0 B
-0 0 0 0
-0 0 0 0
-0 0 0 0
-0 W 0 W
+Rules:
 
-TwoPhaseMove[from=(0,1), to=(1,2)]
-0 0 0 B
-0 0 B 0
-0 0 0 0
-0 0 0 0
-0 W 0 W
+Bishops move according to chess rules (diagonal moves only).
 
-TwoPhaseMove[from=(4,3), to=(1,0)]
-0 0 0 B
-W 0 B 0
-0 0 0 0
-0 0 0 0
-0 W 0 0
+A piece cannot move into a square attacked by an opposing piece.
 
-TwoPhaseMove[from=(4,1), to=(3,2)]
-0 0 0 B
-W 0 B 0
-0 0 0 0
-0 0 W 0
-0 0 0 0
+Moves are not restricted by turns; any bishop can move first.
 
-TwoPhaseMove[from=(1,2), to=(3,0)]
-0 0 0 B
-W 0 0 0
-0 0 0 0
-B 0 W 0
-0 0 0 0
+Implementation Details
 
-TwoPhaseMove[from=(1,0), to=(0,1)]
-0 W 0 B
-0 0 0 0
-0 0 0 0
-B 0 W 0
-0 0 0 0
+Features:
 
-TwoPhaseMove[from=(3,2), to=(2,3)]
-0 W 0 B
-0 0 0 0
-0 0 0 W
-B 0 0 0
-0 0 0 0
+Two-Phase Movement: The program outlines the moves required to reach the goal state in minimal steps while respecting the game rules.
 
-TwoPhaseMove[from=(3,0), to=(2,1)]
-0 W 0 B
-0 0 0 0
-0 B 0 W
-0 0 0 0
-0 0 0 0
+Interactive Visualization: The movement of each bishop is displayed step by step for better clarity.
 
-TwoPhaseMove[from=(2,1), to=(4,3)]
-0 W 0 B
-0 0 0 0
-0 0 0 W
-0 0 0 0
-0 0 0 B
+Rule Enforcement: Ensures that no move violates the allowed game constraints (e.g., invalid placements or attacks).
 
-TwoPhaseMove[from=(0,3), to=(2,1)]
-0 W 0 0
-0 0 0 0
-0 B 0 W
-0 0 0 0
-0 0 0 B
+Optimized Solution: The program provides an optimal sequence of moves to achieve the desired configuration efficiently.
 
-TwoPhaseMove[from=(2,3), to=(4,1)]
-0 W 0 0
-0 0 0 0
-0 B 0 0
-0 0 0 0
-0 W 0 B
+Example Sequence:
 
-TwoPhaseMove[from=(0,1), to=(2,3)]
-0 0 0 0
-0 0 0 0
-0 B 0 W
-0 0 0 0
-0 W 0 B
+Move black bishop from (0,1) to (1,2).
 
-TwoPhaseMove[from=(2,1), to=(1,0)]
-0 0 0 0
-B 0 0 0
-0 0 0 W
-0 0 0 0
-0 W 0 B
+Move white bishop from (4,3) to (1,0).
 
-TwoPhaseMove[from=(2,3), to=(1,2)]
-0 0 0 0
-B 0 W 0
-0 0 0 0
-0 0 0 0
-0 W 0 B
+Move white bishop from (4,1) to (3,2).
 
-TwoPhaseMove[from=(4,1), to=(3,0)]
-0 0 0 0
-B 0 W 0
-0 0 0 0
-W 0 0 0
-0 0 0 B
+Continue alternating movements until achieving the goal state.
 
-TwoPhaseMove[from=(1,0), to=(3,2)]
-0 0 0 0
-0 0 W 0
-0 0 0 0
-W 0 B 0
-0 0 0 B
+The entire series of steps ensures that the bishops safely swap positions while abiding by chess movement rules.
 
-TwoPhaseMove[from=(1,2), to=(0,1)]
-0 W 0 0
-0 0 0 0
-0 0 0 0
-W 0 B 0
-0 0 0 B
+Technologies Used:
 
-TwoPhaseMove[from=(3,0), to=(0,3)]
-0 W 0 W
-0 0 0 0
-0 0 0 0
-0 0 B 0
-0 0 0 B
+Programming Language: Python
 
-TwoPhaseMove[from=(3,2), to=(4,1)]
-0 W 0 W
-0 0 0 0
-0 0 0 0
-0 0 0 0
-0 B 0 B 
+Data Structures: 2D Arrays for board representation
+
+Usage:
+
+Clone the repository.
+
+Run the script to execute the simulation.
+
+View the step-by-step progression from the initial to the goal state.
+
+Applications:
+
+This project demonstrates problem-solving in a constrained environment and can serve as a basis for:
+
+Chess-based game simulations.
+
+Learning pathfinding and movement algorithms.
+
+Developing strategies for optimal move sequences in constrained setups.
